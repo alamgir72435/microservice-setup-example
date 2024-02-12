@@ -1,0 +1,21 @@
+apiVersion: skaffold/v2beta20
+kind: Config
+metadata:
+  name: my-app
+
+build:
+  artifacts:
+    - image: alamgir72435/app1-image
+      context: ./app1
+      docker:
+        dockerfile: Dockerfile
+    - image: alamgir72435/app2-image
+      context: ./app2
+      docker:
+        dockerfile: Dockerfile
+
+deploy:
+  kubectl:
+    manifests:
+      - ./app1/deployment.yaml
+      - ./app2/deployment.yaml
